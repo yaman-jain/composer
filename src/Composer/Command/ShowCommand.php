@@ -288,7 +288,7 @@ EOT
                             }
                         }
                     } else {
-                        $nameLength = max($nameLength, $package);
+                        $nameLength = max($nameLength, strlen($package));
                     }
                 }
                 list($width) = $this->getApplication()->getTerminalDimensions();
@@ -463,7 +463,7 @@ EOT
         $io = $this->getIO();
         $io->write('<info>name</info>     : ' . $package->getPrettyName());
         $io->write('<info>descrip.</info> : ' . $package->getDescription());
-        $io->write('<info>keywords</info> : ' . join(', ', $package->getKeywords() ?: array()));
+        $io->write('<info>keywords</info> : ' . implode(', ', $package->getKeywords() ?: array()));
         $this->printVersions($package, $versions, $installedRepo);
         if ($latestPackage) {
             $style = $this->getVersionStyle($latestPackage, $package);
